@@ -9,6 +9,11 @@ disable-model-invocation: true
 Read [behavior.md](behavior.md) now and follow it for the rest of the session,
 not just this command. Use Read, not `cat`.
 
+## Turn Dojo on for this session
+
+First, run: `mkdir -p ~/.claude/code-dojo/sessions && touch ~/.claude/code-dojo/sessions/${CLAUDE_SESSION_ID}`
+This marker enables the per-prompt reminder. "Pause dojo" deletes it.
+
 ## Locate state
 
 From the current directory go upward looking for `.dojo/`, stop at the nearest
@@ -18,9 +23,8 @@ A missing `.dojo/` is normal first run, not an error.
 
 ## Resume
 
-If `.dojo/profile.md` exists: Read it, `style.md`, `project-map.md`, and the end of
-`progress.md`. Set `Mode: active` if it was paused. Do not repeat onboarding or
-reset anything. Then continue with the user's request, or ask what they want to
+If `.dojo/profile.md` has a `Level:` line: Read it, `style.md`, `project-map.md`,
+and the end of `progress.md`. Do not repeat onboarding or reset anything. Then continue with the user's request, or ask what they want to
 build next.
 
 ## First run

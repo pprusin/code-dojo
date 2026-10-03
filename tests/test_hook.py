@@ -7,45 +7,53 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "hooks"))
 import dojo_hook  # noqa: E402
 
 
-def ev(cwd, name):
-    return {"hook_event_name": name, "cwd": str(cwd)}
-
-
 class HookTest(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name).resolve()
         (self.root / ".git").mkdir()
+        dojo_hook.MARKER_DIR = self.root / "markers"
+        dojo_hook.MARKER_DIR.mkdir()
 
     def tearDown(self):
         self.tmp.cleanup()
 
-    def profile(self, text):
+    def ev(self, name, source=None, sid="s1"):
+        return {"hook_event_name": name, "cwd": str(self.root),
+                "session_id": sid, "source": source}
+
+    def text(self, payload):
+        out = dojo_hook.build(payload)
+        return out["hookSpecificOutput"]["additionalContext"] if out else None
+
+    def test_startup_asks(self):
+        self.assertIn("AskUserQuestion", self.text(self.ev("SessionStart", "startup")))
+
+    def test_clear_asks(self):
+        self.assertIn("AskUserQuestion", self.text(self.ev("SessionStart", "clear")))
+
+    def test_ask_never_is_silent(self):
         (self.root / ".dojo").mkdir()
-        (self.root / ".dojo" / "profile.md").write_text(text)
+        (self.root / ".dojo" / "profile.md").write_text("Ask: never\n")
+        self.assertIsNone(self.text(self.ev("SessionStart", "startup")))
 
-    def test_silent_without_state(self):
-        self.assertIsNone(dojo_hook.build(ev(self.root, "UserPromptSubmit")))
+    def test_no_marker_no_reminder_no_restore(self):
+        self.assertIsNone(self.text(self.ev("UserPromptSubmit")))
+        self.assertIsNone(self.text(self.ev("SessionStart", "resume")))
 
-    def test_reminder_when_active(self):
-        self.profile("Mode: active\nLevel: basics\n")
-        out = dojo_hook.build(ev(self.root, "UserPromptSubmit"))
-        self.assertIn("Code Dojo active", out["hookSpecificOutput"]["additionalContext"])
+    def test_marker_enables_reminder_and_restore(self):
+        (dojo_hook.MARKER_DIR / "s1").touch()
+        self.assertIn("Code Dojo active", self.text(self.ev("UserPromptSubmit")))
+        self.assertIn("behavior.md", self.text(self.ev("SessionStart", "compact")))
 
-    def test_session_start_points_to_behavior(self):
-        self.profile("Mode: active\n")
-        sub = self.root / "src"
-        sub.mkdir()
-        out = dojo_hook.build(ev(sub, "SessionStart"))
-        self.assertIn("behavior.md", out["hookSpecificOutput"]["additionalContext"])
-
-    def test_paused_is_silent(self):
-        self.profile("Mode: paused\nLevel: basics\n")
-        self.assertIsNone(dojo_hook.build(ev(self.root, "UserPromptSubmit")))
+    def test_marker_is_per_session(self):
+        (dojo_hook.MARKER_DIR / "s1").touch()
+        self.assertIsNone(self.text(self.ev("UserPromptSubmit", sid="s2")))
 
     def test_bad_input(self):
         self.assertIsNone(dojo_hook.build("x"))
-        self.assertIsNone(dojo_hook.build({"cwd": "relative"}))
+        self.assertIsNone(dojo_hook.build({"cwd": "rel", "session_id": "a"}))
+        self.assertIsNone(dojo_hook.build(self.ev("UserPromptSubmit", sid="../x")))
 
 
 if __name__ == "__main__":

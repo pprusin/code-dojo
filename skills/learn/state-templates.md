@@ -4,7 +4,7 @@ Plain Markdown, edited with normal file tools. Create only what you have evidenc
 
 ## profile.md
 ```
-Mode: active            # active | paused
+Ask: always             # always | never (ask Dojo-or-normal at session start)
 Level: basics           # zero | basics | intermediate
 Language: python
 Goal: <one line>

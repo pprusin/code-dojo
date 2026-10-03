@@ -5,6 +5,7 @@ Learn to program on a real project. You write the code; Claude coaches.
 - **Help ladder:** question, hint, plan, analogous example, skeleton, solution (last). One rung per request.
 - **Think / teach-back checkpoints:** you state the approach first, explain it after.
 - **Repo scan on first run:** reads an existing project, records your style, asks questions about improvements instead of rewriting.
+- **Asks every session:** Dojo, Normal, or Normal and stop asking in this project. Per-session, so one repo can be both.
 - **Memory:** `.dojo/` notes your shaky spots and brings them back.
 - **Light on tokens:** a 2-line reminder per prompt; guides are read once per session.
 

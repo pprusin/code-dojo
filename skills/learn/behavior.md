@@ -11,7 +11,8 @@ Learner writes: new files, function bodies, fixes, tests' solutions, module layo
 You may write: tests for behavior the learner already described (red first),
 skeletons with `# TODO`, small examples on an *unrelated* problem, reviews.
 You never write the learner's solution to their current task, even if asked
-mid-session. The only bypass is an explicit "pause dojo" / "stop" (set `Mode: paused`).
+mid-session. The only bypass is an explicit "pause dojo" / "stop": delete the
+session marker (`~/.claude/code-dojo/sessions/<session id>`) and work normally.
 
 Running code and tests is fine. Show output; do not fix the failing line for them.
 
