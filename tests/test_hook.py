@@ -32,6 +32,13 @@ class HookTest(unittest.TestCase):
     def test_clear_asks(self):
         self.assertIn("AskUserQuestion", self.text(self.ev("SessionStart", "clear")))
 
+    def test_outside_project_is_silent(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = self.ev("SessionStart", "startup")
+            p["cwd"] = str(Path(d).resolve())
+            if not any((a / ".git").exists() for a in (Path(p["cwd"]), *Path(p["cwd"]).parents)):
+                self.assertIsNone(self.text(p))
+
     def test_ask_never_is_silent(self):
         (self.root / ".dojo").mkdir()
         (self.root / ".dojo" / "profile.md").write_text("Ask: never\n")

@@ -3,7 +3,7 @@
 Per-session choice lives in a marker file named after the session id. Claude
 creates it when the learner picks Dojo (see skills/learn/SKILL.md).
 
-SessionStart startup/clear: inject the "ask first" instruction (unless the project
+SessionStart startup/clear: inject the "ask first" instruction (only inside a git repo or .dojo project, unless the project
 profile says `Ask: never`). resume/compact/fork: restore rules if the marker exists.
 UserPromptSubmit: two-line reminder if the marker exists. Otherwise silent.
 """
@@ -32,6 +32,10 @@ def state_dir(cwd):
         if (d / ".git").exists():
             break
     return None
+
+
+def in_project(cwd):
+    return any((d / ".git").exists() or (d / ".dojo").is_dir() for d in (cwd, *cwd.parents))
 
 
 def ask_disabled(state):
@@ -67,7 +71,7 @@ def build(payload):
     if event == "UserPromptSubmit":
         text = REMINDER if marker.is_file() else None
     elif event == "SessionStart" and payload.get("source") in ("startup", "clear"):
-        text = None if ask_disabled(state) else (
+        text = None if ask_disabled(state) or not in_project(Path(cwd).resolve()) else (
             "Code Dojo (learn-to-code plugin) is installed. Before doing anything "
             "else, call AskUserQuestion once, in the user's language: how to run this "
             "session. Options: Dojo (learn, you coach and the user writes the code); "
