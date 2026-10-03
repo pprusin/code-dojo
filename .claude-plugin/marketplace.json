@@ -1,0 +1,14 @@
+{
+  "name": "code-dojo",
+  "owner": { "name": "pprusin" },
+  "metadata": {
+    "description": "Code Dojo: learn to program on real projects. You write the code, Claude coaches."
+  },
+  "plugins": [
+    {
+      "name": "code-dojo",
+      "source": "./",
+      "description": "Learn to code while building real projects. Claude coaches, you write."
+    }
+  ]
+}
