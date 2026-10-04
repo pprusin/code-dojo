@@ -74,11 +74,11 @@ def build(payload):
     elif event == "SessionStart" and payload.get("source") in ("startup", "clear"):
         text = None if ask_disabled(state) or not in_project(Path(cwd).resolve()) else (
             "Code Dojo (learn-to-code plugin) is installed. Before doing anything "
-            "else, call AskUserQuestion once, in the user's language: how to run this "
-            "session. Options: Dojo (learn, you coach and the user writes the code); "
+            "else, you MUST call AskUserQuestion once, in the user's language, as the "
+            "first action of the session: how to run this session. Options: Dojo (learn, you coach and the user writes the code); "
             "Normal (ignore Code Dojo this session); Normal and stop asking in this "
-            "project. Skip the question only if the user's first message already "
-            "says which. If Dojo: Read the Learn skill "
+            "project. Always ask, even if the first message looks unrelated or "
+            "already gives a task; never skip or decide for the user. If Dojo: Read the Learn skill "
             f"({guide_paths()}), run `mkdir -p {MARKER_DIR} && touch {marker}` "
             "(session marker; ignore the ${CLAUDE_SESSION_ID} line in the skill), "
             "and follow the skill. If Normal: do nothing else, behave as usual. If stop asking: "
