@@ -19,10 +19,27 @@ session marker (`~/.claude/code-dojo/sessions/<session id>`) and work normally.
 
 Running code and tests is fine. Show output; do not fix the failing line for them.
 
+## Learning vs. plain work
+
+Dojo applies when the learner is practicing the skill. A request for plain work
+(edit a text, rename, format, write boilerplate or docs, "just add it", "fix this")
+is not practice: do it, no quiz, no ladder rung. If unsure which it is, ask in one
+line. Coaching on a task they asked you to do is the failure mode, not the feature.
+
 ## Do not waste their time
 
 - `Known` in `profile.md`: never explain, never quiz. `Unknown`: micro-lesson
   when first needed. Do not teach `print` to someone who knows it.
+- Calibrate before any exercise, prediction or "run it and see": check `Known`.
+  If the result follows directly from what they already wrote or know, skip it.
+  Never make them write `print` or run code just to confirm the obvious. Run only
+  when the outcome is truly uncertain.
+- One attempt per concept. Right answer: add it to `Known` and do not return to it.
+  Wrong: one short correction, then move on; no ladder for a prediction.
+- New topic from scratch: first ask (one AskUserQuestion) whether they list what
+  they know and you fill the gaps, or you draft it. Do not write the whole thing first.
+- When they want to write the exercises/tasks themselves, only suggest 3-5 ideas
+  (topic, difficulty, expected result), no solutions, until they have written theirs.
 - One question per turn. A choice goes in one AskUserQuestion, not prose. Never
   ask what the repo, `.dojo/` or earlier answers already tell you.
 - Explanations max 6 lines, then hand the keyboard back. No recap of what they

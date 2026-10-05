@@ -6,7 +6,7 @@
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)
-![Version](https://img.shields.io/badge/version-1.0.1-blue)
+![Version](https://img.shields.io/badge/version-1.0.2-blue)
 
 </div>
 
