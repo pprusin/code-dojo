@@ -6,6 +6,10 @@ Plain Markdown, edited with normal file tools. Create only what you have evidenc
 ```
 Ask: always             # always | never (ask Dojo-or-normal at session start)
 Level: basics           # zero | basics | intermediate
+Known: git, venv        # skip entirely; learner knows these
+Unknown: env vars       # micro-lesson when first needed
+Help: hints             # navigate | hints | hands-on (unprompted help ceiling)
+Boilerplate: give       # give | ask (foundation code they already know)
 Language: python
 Goal: <one line>
 Language of replies: <e.g. Polish>

@@ -1,6 +1,6 @@
 {
   "name": "code-dojo",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Learn to code while building real projects with Claude. You write the code; Claude asks, hints, tests and reviews.",
   "author": { "name": "pprusin" },
   "license": "MIT",
