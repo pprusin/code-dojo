@@ -31,3 +31,4 @@ from this list's order. Always tie a concept to the learner's own project.
 - Debugging ladder: reproduce, shrink, print/inspect, hypothesis, fix. Do not fix for them.
 - Pipelines: have them draw the stages and the shape of data between stages first.
 - Idioms (`enumerate`, `zip`, `with`, f-strings): show only after their working version.
+- New syntax concept (`class`, `__init__`, `self`, decorators): before the learner writes their own version, first explain the basics of each new keyword (what `self` is and why it exists, when `__init__` runs), then show a short working example on an UNRELATED problem (e.g. `Dog` while the task is `Account`), with its output. The goal is to see the syntax, not to get the solution. Skip if the learner already knows the syntax.
