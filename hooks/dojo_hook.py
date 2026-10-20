@@ -3,7 +3,7 @@
 Per-session choice lives in a marker file named after the session id. Claude
 creates it when the learner picks Dojo (see skills/learn/SKILL.md).
 
-SessionStart startup/clear: inject the "ask first" instruction (only inside a git repo or .dojo project, unless the project
+SessionStart startup/clear: inject the "ask first" instruction (everywhere, unless the project
 profile says `Ask: never`). resume/compact/fork: restore rules if the marker exists.
 UserPromptSubmit: two-line reminder if the marker exists. Otherwise silent.
 """
@@ -33,10 +33,6 @@ def state_dir(cwd):
         if (d / ".git").exists():
             break
     return None
-
-
-def in_project(cwd):
-    return any((d / ".git").exists() or (d / ".dojo").is_dir() for d in (cwd, *cwd.parents))
 
 
 def ask_disabled(state):
@@ -72,7 +68,7 @@ def build(payload):
     if event == "UserPromptSubmit":
         text = REMINDER if marker.is_file() else None
     elif event == "SessionStart" and payload.get("source") in ("startup", "clear"):
-        text = None if ask_disabled(state) or not in_project(Path(cwd).resolve()) else (
+        text = None if ask_disabled(state) else (
             "Code Dojo (learn-to-code plugin) is installed. Before doing anything "
             "else, you MUST call AskUserQuestion once, in the user's language, as the "
             "first action of the session: how to run this session. Options: Dojo (learn, you coach and the user writes the code); "
@@ -82,7 +78,7 @@ def build(payload):
             f"({guide_paths()}), run `mkdir -p {MARKER_DIR} && touch {marker}` "
             "(session marker; ignore the ${CLAUDE_SESSION_ID} line in the skill), "
             "and follow the skill. If Normal: do nothing else, behave as usual. If stop asking: "
-            "set `Ask: never` in .dojo/profile.md (create it at the git root if "
+            "set `Ask: never` in .dojo/profile.md (create it at the git root, or in the current directory outside a git repo, if "
             "missing) and behave as usual."
         )
     elif event == "SessionStart" and marker.is_file():
