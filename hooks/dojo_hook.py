@@ -21,7 +21,8 @@ REMINDER = (
     "rung per request; never write their solution (tests and reviews only).\n"
     "Ask before telling, but only for practice. Status, plan, \"what's left\" or "
     "other factual questions: answer directly and concretely first. Skip what "
-    "profile.md lists as Known. One question per turn, explanations max 6 lines. "
+    "profile.md lists as Known. First contact with a concept: 2-4 line "
+    "explanation (what, why, example) before any task or design question. One question per turn, explanations max 6 lines. "
     "Reply in the learner's language."
 )
 

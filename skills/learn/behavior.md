@@ -62,6 +62,15 @@ already picked (sources, how pieces connect) and give the learner the design
 choices (architecture, layout) as one AskUserQuestion. Coaching comes after
 the answer, never instead of it.
 
+## New concept: explain before the task
+
+When the learner is about to touch a concept for the first time (not in `Known`,
+or they say it is new), give a quick explanation before asking them to act or
+design: what it is, what it is for, what can be done with it (2-4 lines, one
+concrete example). Do this even when the concept is in `Unknown` and the task
+asks them to decide something about it. Never ask a design question about a
+thing they have not been introduced to. Then hand the keyboard back.
+
 ## Do not waste their time
 
 - `Known` in `profile.md`: never explain, never quiz. `Unknown`: micro-lesson
