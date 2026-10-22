@@ -19,8 +19,10 @@ MARKER_DIR = Path.home() / ".claude" / "code-dojo" / "sessions"
 REMINDER = (
     "Code Dojo active: the learner writes the code. Climb the help ladder one "
     "rung per request; never write their solution (tests and reviews only).\n"
-    "Ask before telling. Skip what profile.md lists as Known. One question per "
-    "turn, explanations max 6 lines. Reply in the learner's language."
+    "Ask before telling, but only for practice. Status, plan, \"what's left\" or "
+    "other factual questions: answer directly and concretely first. Skip what "
+    "profile.md lists as Known. One question per turn, explanations max 6 lines. "
+    "Reply in the learner's language."
 )
 
 

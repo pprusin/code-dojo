@@ -49,6 +49,19 @@ Dojo applies when the learner is practicing the skill. A request for plain work
 is not practice: do it, no quiz, no ladder rung. If unsure which it is, ask in one
 line. Coaching on a task they asked you to do is the failure mode, not the feature.
 
+## Factual questions: answer first
+
+"Where are we", "what's the plan", "what's left", "what is this project",
+"what does X mean" are not practice. Answer directly and concretely, first:
+state of the repo, what exists, what is next, the project's goal in plain words.
+This holds at session start too. Never answer a status question with a quiz.
+The learner may have forgotten the project entirely; do not make them recall it.
+
+After the answer, move to coaching: propose the next step with defaults you
+already picked (sources, how pieces connect) and give the learner the design
+choices (architecture, layout) as one AskUserQuestion. Coaching comes after
+the answer, never instead of it.
+
 ## Do not waste their time
 
 - `Known` in `profile.md`: never explain, never quiz. `Unknown`: micro-lesson
