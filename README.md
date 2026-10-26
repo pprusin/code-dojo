@@ -6,7 +6,7 @@
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-green)
 ![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757)
-![Version](https://img.shields.io/badge/version-1.0.3-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-blue)
 
 </div>
 
@@ -41,14 +41,15 @@ flowchart TD
 
 | | |
 |---|---|
-| ⚖️ **Decision briefs** | Options, the one difference that matters, a recommendation. You choose. A clear default is stated, not asked. |
+| 🏛️ **Understanding first** | On a new platform (Databricks, Snowflake, a framework) Claude maps the pieces first and keeps asking why each exists. Don't want to write some code? Say so: Claude writes it, you explain it back. |
+| ⚖️ **Decision briefs** | Every decision is yours: names, layout, app vs service, tools, infra. Options, the one difference that matters, a recommendation. Say "you decide" to delegate a category; it is saved in `Delegated`. Choices are logged in `.dojo/decisions.md`. |
 | 🎯 **Calibrated** | Known topics are never explained. Unknown ones get a short lesson at the moment you need them, never an article. |
 | 🧩 **Foundation vs core** | Boilerplate you already know may be handed over, labelled. The part the project exists for is always yours. |
 | 🪜 **Help ladder** | Question, concept hint, goal list (what, never how), analogous example, skeleton, full solution. One rung per request. `Help` level (`navigate`, `hints`, `hands-on`) sets how far Claude goes unasked. |
 | 🔮 **Prove it** | You predict ("what if the input is empty?"), change ("now it must also do X") or break the code. No recitals. |
 | 🪶 **Light on tokens** | One question per turn, lessons capped at 6 lines. About 150 tokens once per session, about 70 per prompt, zero in Normal mode. |
 
-At session start Claude asks once in a git repo: **Dojo**, **Normal** (plugin stays out of the way), or **Normal and stop asking**. Say "pause dojo" any time to switch it off.
+At session start Claude asks once: **Dojo**, **Normal** (plugin stays out of the way), or **Normal and stop asking**. Say "pause dojo" any time to switch it off.
 
 ## 📦 Install
 
@@ -73,7 +74,7 @@ skills/stuck/, skills/checkpoint/
 hooks/          dojo_hook.py (session question, per-prompt reminder)
 ```
 
-Notes live in `.dojo/` in your project (`profile.md` with `Known`, `Unknown`, `Help`; `project-map.md`; `style.md`; `progress.md`). Add it to `.gitignore` if you don't want it committed.
+Notes live in `.dojo/` in your project (`profile.md` with `Known`, `Unknown`, `Help`, `Delegated`; `project-map.md`; `style.md`; `decisions.md`; `progress.md`). Add it to `.gitignore` if you don't want it committed.
 
 ## ⚠️ Limitations
 

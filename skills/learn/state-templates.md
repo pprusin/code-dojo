@@ -10,6 +10,7 @@ Known: git, venv        # skip entirely; learner knows these
 Unknown: env vars       # micro-lesson when first needed
 Help: hints             # navigate | hints | hands-on (unprompted help ceiling)
 Boilerplate: give       # give | ask (foundation code they already know)
+Delegated: naming       # decision categories the learner handed to Claude
 Language: python
 Goal: <one line>
 Language of replies: <e.g. Polish>
@@ -29,6 +30,14 @@ Flow: <input> -> <step> -> <output>
 - Naming: ... (e.g. src/x.py)
 - Errors: ...
 - Tests: ...
+```
+
+## decisions.md (append-only log)
+```
+## <date> <decision>
+Options: <a> / <b>
+Chose: <choice>
+Why: <the learner's reason, their words>
 ```
 
 ## progress.md (append-only log)
